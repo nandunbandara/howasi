@@ -1,0 +1,23 @@
+{
+  "name": "howasi",
+  "version": "1.0.0",
+  "description": "A web application for audience to rate a speaker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ntbandara3/howasi.git"
+  },
+  "author": "Nandun Bandara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ntbandara3/howasi/issues"
+  },
+  "homepage": "https://github.com/ntbandara3/howasi#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
