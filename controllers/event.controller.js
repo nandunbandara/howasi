@@ -49,6 +49,14 @@ exports.getEventsById = (req, res, next) => {
 */
 exports.createNewEvent = (req, res, next) => {
 
-    
+    if(req.body.title === "" || typeof req.body.title === undefined){
+        res.status(400).json({ success:false, message:"Event title is not defined"});
+        return;
+    }
+
+    if(req.body.description === "" || typeof req.body.title === undefined){
+        res.status(400).json({ success:false, message:"Event description is not defined"});
+        return;
+    }
 
 };

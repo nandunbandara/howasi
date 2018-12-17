@@ -3,9 +3,9 @@ const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
-    email: { type:string, required:true, unique:true },
-    hash: { type:string, required:true },
-    salt: { type:string, required:true }
+    email: { type:String, required:true, unique:true },
+    hash: { type:String, required:true },
+    salt: { type:String, required:true }
 });
 
 // create salted hash from the user entered password and store
