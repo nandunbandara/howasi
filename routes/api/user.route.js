@@ -2,6 +2,7 @@ const router = require('express').Router();
 const auth = require('../auth');
 const User = require('../../models/user.model');
 
+// POST: register user
 router.post('/', auth.optional, (req, res, next) => {
 
     let user = req.body;
@@ -14,9 +15,12 @@ router.post('/', auth.optional, (req, res, next) => {
 
     let userObject = new User(user);
 
-    userObject.setPassword(user.password);
-
     return userObject.save()    
-                .then(() => res.json({ user: finalUser.toAuthJSON() }));
-                
+            .then(() => res.json({ user: finalUser.toAuthJSON() }))
+            .catch(err => {
+                res.status(500).json({ success:false, message: "Could not perform operation", error:err });
+            });
+
 });
+
+module.exports = router;
