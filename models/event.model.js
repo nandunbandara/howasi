@@ -7,8 +7,8 @@ const eventSchema = new mongoose.Schema({
     date: { type:String, requried:true },
     location: { type:String, required:true },
     speakers: [],
-    created_on: { type:date, required:true },
-    updated_on: { type:date, required:true }
+    created_on: { type:Date, required:true },
+    updated_on: { type:Date, required:true }
 
 });
 
