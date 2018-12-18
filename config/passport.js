@@ -4,29 +4,17 @@ const LocalStrategy = require("passport-local");
 
 const User = require("../models/user.model");
 
-passport.use(new LocalStrategy({
-    
-    usernameField: 'user[email]',
-    passwordField: 'user[password]'
+passport.use(new LocalStrategy(
 
-}, (email, password, done) => {
-    
-    User.findOne({ email: email })
-        .then((user) => {
-            if(!user){
-                return done(null, false, { errors: {
-                    'email': 'is invalid'
-                }});
-            }
+    (email, password, done) => {
+        User.find({email: email}, (err, user) => {
 
-            if(!user.validatePassword(password)){
-                return done(null, false, { errors: {
-                    'password': 'is incorrect'
-                }});
-            }
+            if(err) return done(err);
+            if(!user) return done(null, false);
+            if(!user.validatePassword(password)) return done(null, false);
 
             return done(null, user);
-
-        }).catch(done);
-
-}));
+        });
+    }
+    
+));
