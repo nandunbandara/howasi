@@ -8,11 +8,14 @@ const UserSchema = new mongoose.Schema({
     salt: { type:String, required:true }
 });
 
-// create salted hash from the user entered password and store
-UserSchema.methods.setPassword = (password) => {
+UserSchema.pre('save', (next) => {
+
     this.salt = crypto.randomBytes(16).toString("hex");
     this.hash = crypto.pbkdf2Sync(password, this.salt, 10000, 512, "sha512").toString("hex");
-};
+    
+    next();
+
+});
 
 // compare the salted hash of the user entered password with the stored
 UserSchema.methods.validatePassword = (password) => {
